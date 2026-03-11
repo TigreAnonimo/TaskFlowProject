@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+
+<body class="min-h-screen transition">
+
+    <!-- HEADER PROFESIONAL -->
+    <header class="w-full py-6 px-10 flex justify-between items-center shadow-lg"
+    style="background-color: var(--bg-card); color: var(--text);">
+
+    <h1 class="text-3xl font-extrabold tracking-wide"
+        style="color: var(--title-blue);">
+        TaskFlow
+    </h1>
+
+    <button 
+        id="themeToggle"
+        class="px-4 py-2 rounded-lg font-semibold transition shadow-sm"
+        style="background-color: var(--bg-card); color: var(--text);">
+        🌙
+    </button>
+</header>
+
+
+
+    <!-- SECCIÓN SUPERIOR (para imágenes futuras) -->
+    <section class="w-full text-center py-12 px-4">
+        <h2 class="text-2xl font-bold mb-2 tracking-wide"
+            style="color: var(--title-blue);">
+            Organiza tu día con estilo
+        </h2>
+    
+        <p class="text-md opacity-80 max-w-xl mx-auto"
+            style="color: var(--text-secondary);">
+            Gestiona tus tareas con prioridades.
+        </p>
+    </section>
+    
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="w-full flex justify-center px-4 pb-10">
+        <div class="card w-full max-w-2xl shadow-xl rounded-xl p-6 space-y-6 transition">
+
+            <!-- Barra de filtros -->
+            <div class="flex justify-center gap-2">
+                <button class="filterBtn priority-option px-3 py-1 rounded-lg" data-filter="all"
+                    style="background-color: var(--bg-card); color: var(--text);">
+                    Todas
+                </button>
+                <button class="filterBtn priority-option px-3 py-1 rounded-lg" data-filter="alta"
+                    style="background-color: var(--bg-card); color: var(--text);">
+                    Alta
+                </button>
+                <button class="filterBtn priority-option px-3 py-1 rounded-lg" data-filter="media"
+                    style="background-color: var(--bg-card); color: var(--text);">
+                    Media
+                </button>
+                <button class="filterBtn priority-option px-3 py-1 rounded-lg" data-filter="baja"
+                    style="background-color: var(--bg-card); color: var(--text);">
+                    Baja
+                </button>
+            </div>
+
+            <!-- Input + selector de prioridad -->
+            <div class="flex gap-2">
+                <input 
+                    id="taskInput"
+                    type="text"
+                    placeholder="Escribe una tarea..."
+                    class="flex-1 border rounded-lg px-3 py-2 outline-none transition"
+                    style="background-color: var(--bg-card); color: var(--text); border-color: var(--text-secondary);"
+                >
+
+                <select id="prioritySelect"
+                    class="border rounded-lg px-2 py-2 priority-option"
+                    style="background-color: var(--bg-card); color: var(--text); border-color: var(--text-secondary);">
+                    <option value="alta">Alta </option>
+                    <option value="media">Media </option>
+                    <option value="baja">Baja </option>
+                </select>
+
+                <button 
+                    id="addTaskBtn"
+                    class="px-4 py-2 rounded-lg transition"
+                    style="background-color: var(--color-blue-600); color: white;">
+                    Añadir
+                </button>
+            </div>
+
+            <ul id="taskList" class="space-y-3"></ul>
+
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
