@@ -66,6 +66,14 @@
                 </button>
             </div>
 
+            <!-- Resumen de tareas -->
+            <div class="flex justify-between items-center text-sm px-2 py-2 rounded-lg"
+                 style="background-color: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--text-secondary);">
+                <span><strong>Total:</strong> <span id="totalCount">0</span></span>
+                <span><strong>Pendientes:</strong> <span id="pendingCount">0</span></span>
+                <span><strong>Completadas:</strong> <span id="completedCount">0</span></span>
+            </div>
+
             <!-- Input + selector de prioridad -->
             <div class="flex gap-2">
                 <input 
@@ -97,6 +105,6 @@
         </div>
     </main>
 
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
