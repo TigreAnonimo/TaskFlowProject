@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalCountEl = document.getElementById("totalCount");
     const pendingCountEl = document.getElementById("pendingCount");
     const completedCountEl = document.getElementById("completedCount");
+    const searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("input", applySearchFilter);
 
     let tasks = [];
 
@@ -19,10 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
     saved.forEach(task => renderTask(task));
     updateCounters();
 
+    // Buscador
+    function applySearchFilter() {
+        const text = searchInput.value.toLowerCase();
+    
+        document.querySelectorAll("#taskList li").forEach(li => {
+            const taskText = li.querySelector("span").textContent.toLowerCase();
+            li.style.display = taskText.includes(text) ? "flex" : "none";
+        });
+    }
+
     // Modo oscuro
     if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
         themeToggle.textContent = "☀️";
+    } else {
+        themeToggle.textContent = "🌙";
     }
 
     themeToggle.addEventListener("click", () => {
@@ -76,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const li = document.createElement("li");
         li.dataset.priority = task.priority;
 
-        let borderColor = {
+        const borderColor = {
             alta: "green",
             media: "blue",
             baja: "red"
@@ -96,14 +111,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <div class="flex gap-2">
             <button class="completeBtn text-green-600 hover:text-green-800">✔</button>
+            <button class="editBtn text-blue-600 hover:text-blue-800">Editar</button>
             <button class="deleteBtn text-red-600 hover:text-red-800">Eliminar</button>
           </div>
         `;
 
+        const taskTextEl = li.querySelector("span");
+
         // Estilo si está completada
         if (task.completed) {
             li.classList.add("opacity-50");
-            li.querySelector("span").classList.add("line-through");
+            taskTextEl.style.textDecoration = "line-through";
         }
 
         // Completar tarea
@@ -111,10 +129,22 @@ document.addEventListener("DOMContentLoaded", () => {
             task.completed = !task.completed;
 
             li.classList.toggle("opacity-50");
-            li.querySelector("span").classList.toggle("line-through");
+            taskTextEl.style.textDecoration = task.completed ? "line-through" : "none";
 
             localStorage.setItem("tasks", JSON.stringify(tasks));
             updateCounters();
+        });
+
+        // Editar tarea (CORRECTO)
+        li.querySelector(".editBtn").addEventListener("click", () => {
+            const newText = prompt("Editar tarea:", task.text);
+
+            if (newText !== null && newText.trim() !== "") {
+                task.text = newText.trim();
+                taskTextEl.textContent = task.text;
+
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+            }
         });
 
         // Eliminar tarea
@@ -128,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         list.appendChild(li);
     }
 
-    // Filtros
+    // Filtros por prioridad
     filterButtons.forEach(btn => {
         btn.addEventListener("click", () => {
             const filter = btn.dataset.filter;
