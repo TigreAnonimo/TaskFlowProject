@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const completedCountEl = document.getElementById("completedCount");
     const searchInput = document.getElementById("searchInput");
     const clearCompletedBtn = document.getElementById("clearCompletedBtn");
-    
-
+    const completeAllBtn = document.getElementById("completeAllBtn");
 
     searchInput.addEventListener("input", applySearchFilter);
 
@@ -138,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateCounters();
         });
 
-        // Editar tarea (CORRECTO)
+        // Editar tarea
         li.querySelector(".editBtn").addEventListener("click", () => {
             const newText = prompt("Editar tarea:", task.text);
 
@@ -175,19 +174,26 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-});
-// Borrar todas las tareas completadas
-clearCompletedBtn.addEventListener("click", () => {
-    // Eliminar del DOM
-    document.querySelectorAll("#taskList li.opacity-50").forEach(li => li.remove());
 
-    // Eliminar del array
-    tasks = tasks.filter(t => !t.completed);
+    // Borrar todas las tareas completadas
+    clearCompletedBtn.addEventListener("click", () => {
+        document.querySelectorAll("#taskList li.opacity-50").forEach(li => li.remove());
+        tasks = tasks.filter(t => !t.completed);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        updateCounters();
+    });
 
-    // Guardar cambios
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    // Marcar TODAS las tareas como completadas
+    completeAllBtn.addEventListener("click", () => {
+        tasks.forEach(task => task.completed = true);
 
-    // Actualizar contadores
-    updateCounters();
-});
+        document.querySelectorAll("#taskList li").forEach(li => {
+            li.classList.add("opacity-50");
+            li.querySelector("span").style.textDecoration = "line-through";
+        });
 
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        updateCounters();
+    });
+
+}); // ← Cierre correcto del DOMContentLoaded
