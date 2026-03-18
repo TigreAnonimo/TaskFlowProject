@@ -66,6 +66,8 @@
                     Baja
                 </button>
             </div>
+
+            
             
             <!-- Buscador de tareas -->
             <div class="mt-4">
@@ -96,6 +98,7 @@
                     class="flex-1 border rounded-lg px-3 py-2 outline-none transition"
                     style="background-color: var(--bg-card); color: var(--text); border-color: var(--text-secondary);"
                 >
+                
 
                 <select id="prioritySelect"
                     class="border rounded-lg px-2 py-2 priority-option"
@@ -112,10 +115,22 @@
                     Añadir
                 </button>
             </div>
+            <!-- Botón para borrar tareas completadas -->
 
             <ul id="taskList" class="space-y-3"></ul>
+            <!-- Botón para borrar tareas completadas -->
+<div class="flex justify-end">
+    <button id="clearCompletedBtn"
+        class="px-3 py-2 rounded-lg text-sm transition"
+        style="background-color: var(--color-blue-600); color: white;">
+        Borrar tareas completadas
+    </button>
+</div>
+
+
 
         </div>
+        
     </main>
 
     <footer class="w-full text-center py-6 opacity-70 text-sm mt-auto"

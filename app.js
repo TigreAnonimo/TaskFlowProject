@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const pendingCountEl = document.getElementById("pendingCount");
     const completedCountEl = document.getElementById("completedCount");
     const searchInput = document.getElementById("searchInput");
+    const clearCompletedBtn = document.getElementById("clearCompletedBtn");
+    
+
 
     searchInput.addEventListener("input", applySearchFilter);
 
@@ -173,3 +176,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+// Borrar todas las tareas completadas
+clearCompletedBtn.addEventListener("click", () => {
+    // Eliminar del DOM
+    document.querySelectorAll("#taskList li.opacity-50").forEach(li => li.remove());
+
+    // Eliminar del array
+    tasks = tasks.filter(t => !t.completed);
+
+    // Guardar cambios
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    // Actualizar contadores
+    updateCounters();
+});
+
