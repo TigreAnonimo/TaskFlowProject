@@ -153,5 +153,3 @@ Información del proyecto.
 
 ---
 
-# 📂 Estructura del proyecto
-
