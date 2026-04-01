@@ -9,27 +9,24 @@
 
 <body class="min-h-screen transition">
 
-    
     <!-- HEADER PROFESIONAL -->
     <header class="w-full py-6 px-10 flex justify-between items-center shadow-lg"
     style="background-color: var(--bg-card); color: var(--text);">
 
-    <h1 class="text-3xl font-extrabold tracking-wide"
-        style="color: var(--title-blue);">
-        TaskFlow
-    </h1>
+        <h1 class="text-3xl font-extrabold tracking-wide"
+            style="color: var(--title-blue);">
+            TaskFlow
+        </h1>
 
-    <button 
-        id="themeToggle"
-        class="px-4 py-2 rounded-lg font-semibold transition shadow-sm"
-        style="background-color: var(--bg-card); color: var(--text);">
-        🌙
-    </button>
-</header>
+        <button 
+            id="themeToggle"
+            class="px-4 py-2 rounded-lg font-semibold transition shadow-sm"
+            style="background-color: var(--bg-card); color: var(--text);">
+            🌙
+        </button>
+    </header>
 
-
-
-    <!-- SECCIÓN SUPERIOR (para imágenes futuras) -->
+    <!-- SECCIÓN SUPERIOR -->
     <section class="w-full text-center py-12 px-4">
         <h2 class="text-2xl font-bold mb-2 tracking-wide"
             style="color: var(--title-blue);">
@@ -41,7 +38,6 @@
             Gestiona tus tareas con prioridades.
         </p>
     </section>
-    
 
     <!-- CONTENEDOR PRINCIPAL -->
     <main class="w-full flex justify-center px-4 pb-10">
@@ -67,21 +63,14 @@
                 </button>
             </div>
 
-            
-            
-            <!-- Buscador de tareas -->
+            <!-- Buscador -->
             <div class="mt-4">
-                <input
-                 id="searchInput"
-                    type="text"
-                    placeholder="Buscar tareas..."
+                <input id="searchInput" type="text" placeholder="Buscar tareas..."
                     class="w-full border rounded-lg px-3 py-2 outline-none transition"
                     style="background-color: var(--bg-card); color: var(--text); border-color: var(--text-secondary);">
             </div>
 
-
-
-            <!-- Resumen de tareas -->
+            <!-- Resumen -->
             <div class="flex justify-between items-center text-sm px-2 py-2 rounded-lg"
                  style="background-color: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--text-secondary);">
                 <span><strong>Total:</strong> <span id="totalCount">0</span></span>
@@ -89,62 +78,53 @@
                 <span><strong>Completadas:</strong> <span id="completedCount">0</span></span>
             </div>
 
-            <!-- Input + selector de prioridad -->
+            <!-- Input + prioridad -->
             <div class="flex gap-2">
-                <input 
-                    id="taskInput"
-                    type="text"
-                    placeholder="Escribe una tarea..."
+                <input id="taskInput" type="text" placeholder="Escribe una tarea..."
                     class="flex-1 border rounded-lg px-3 py-2 outline-none transition"
-                    style="background-color: var(--bg-card); color: var(--text); border-color: var(--text-secondary);"
-                >
-                
+                    style="background-color: var(--bg-card); color: var(--text); border-color: var(--text-secondary);">
 
                 <select id="prioritySelect"
                     class="border rounded-lg px-2 py-2 priority-option"
                     style="background-color: var(--bg-card); color: var(--text); border-color: var(--text-secondary);">
-                    <option value="alta">Alta </option>
-                    <option value="media">Media </option>
-                    <option value="baja">Baja </option>
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
                 </select>
 
-                <button 
-                    id="addTaskBtn"
+                <button id="addTaskBtn"
                     class="px-4 py-2 rounded-lg transition"
                     style="background-color: var(--color-blue-600); color: white;">
                     Añadir
                 </button>
             </div>
-            <!-- Botón para borrar tareas completadas -->
 
             <ul id="taskList" class="space-y-3"></ul>
-            <!-- Botón para borrar tareas completadas -->
-        <!-- Botones de acciones globales -->
-<div class="flex justify-end gap-2 mt-2">
-    <button id="clearCompletedBtn"
-        class="px-2 py-1 text-xs rounded-md transition"
-        style="background-color: #d46a6a; color: white; border: 1px solid #b85c5c;">        Borrar completadas
-    </button>
 
-    <button id="completeAllBtn"
-        class="px-2 py-1 text-xs rounded-md transition"
-        style="background-color: var(--color-blue-600); color: white;">
-        Marcar todas
-    </button>
-</div>
+            <!-- Acciones globales -->
+            <div class="flex justify-end gap-2 mt-2">
+                <button id="clearCompletedBtn"
+                    class="px-2 py-1 text-xs rounded-md transition"
+                    style="background-color: #d46a6a; color: white; border: 1px solid #b85c5c;">
+                    Borrar completadas
+                </button>
 
+                <button id="completeAllBtn"
+                    class="px-2 py-1 text-xs rounded-md transition"
+                    style="background-color: var(--color-blue-600); color: white;">
+                    Marcar todas
+                </button>
+            </div>
 
-        
+        </div>
     </main>
 
     <footer class="w-full text-center py-6 opacity-70 text-sm mt-auto"
         style="color: var(--text-secondary);">
-    © 2024 TaskFlow — Proyecto Bootcamp
-</footer>
-<script type="module" src="app.js"></script>
+        © 2024 TaskFlow — Proyecto Bootcamp
+    </footer>
 
 
-
-
+    <script type="module" src="./app.js"></script>
 </body>
 </html>
