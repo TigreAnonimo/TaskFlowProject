@@ -1,22 +1,23 @@
-import taskRoutes from "./routes/task.routes.js";
 import express from "express";
 import cors from "cors";
-import "./config/env.js";
+import taskRoutes from "../src/routes/task.routes.js";
 import { errorHandler } from "../middlewares/errorHandler.js";
-
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Rutas
-app.use("/api/v1/tasks", taskRoutes);
-
+// Ruta raíz
 app.get("/", (req, res) => {
   res.json({ message: "Servidor funcionando correctamente" });
 });
 
-// Middleware global de errores (siempre al final)
+// Rutas API
+app.use("/api/v1/tasks", taskRoutes);
+
+// Middleware de errores
 app.use(errorHandler);
+
+// Exportar la app directamente para Vercel
 export default app;

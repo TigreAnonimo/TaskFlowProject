@@ -6,7 +6,7 @@ export const taskController = {
   },
 
   crearTarea(req, res) {
-    const { titulo, prioridad } = req.body;
+    let { titulo, prioridad } = req.body;
 
     // Validación del título
     if (!titulo || typeof titulo !== "string" || titulo.trim().length < 3) {
@@ -15,10 +15,13 @@ export const taskController = {
       });
     }
 
-    // Validación de la prioridad
-    if (typeof prioridad !== "number" || prioridad < 1) {
+    // Prioridad por defecto si no se envía
+    if (!prioridad) prioridad = 2;
+
+    // Validación de prioridad
+    if (isNaN(prioridad) || prioridad < 1 || prioridad > 3) {
       return res.status(400).json({
-        error: "La prioridad debe ser un número positivo."
+        error: "La prioridad debe ser un número entre 1 y 3."
       });
     }
 
@@ -30,16 +33,17 @@ export const taskController = {
     const id = parseInt(req.params.id);
     const datos = req.body;
 
-    // Validación opcional (recomendada)
+    // Validación opcional del título
     if (datos.titulo && (typeof datos.titulo !== "string" || datos.titulo.trim().length < 3)) {
       return res.status(400).json({
         error: "El título debe tener al menos 3 caracteres."
       });
     }
 
-    if (datos.prioridad && (typeof datos.prioridad !== "number" || datos.prioridad < 1)) {
+    // Validación opcional de prioridad
+    if (datos.prioridad && (isNaN(datos.prioridad) || datos.prioridad < 1 || datos.prioridad > 3)) {
       return res.status(400).json({
-        error: "La prioridad debe ser un número positivo."
+        error: "La prioridad debe ser un número entre 1 y 3."
       });
     }
 

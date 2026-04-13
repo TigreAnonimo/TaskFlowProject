@@ -23,7 +23,7 @@ function mostrarError(mensaje) {
 }
 
 // -----------------------------
-// RENDER UI (CARGA / ERROR / LISTA)
+// RENDER UI
 // -----------------------------
 function renderUI() {
     list.innerHTML = "";
@@ -180,15 +180,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // CREAR TAREA
     addBtn.addEventListener("click", async () => {
         const text = input.value.trim();
-        const priority = prioritySelect.value;
+        const priority = parseInt(prioritySelect.value);
 
         if (text === "") return;
 
         try {
             const nueva = await crearTarea({
                 titulo: text,
-                prioridad: priority === "alta" ? 1 : priority === "media" ? 2 : 3
-            }); 
+                prioridad: priority
+            });
 
             nueva.createdAt = new Date().toLocaleDateString("es-ES");
 
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const filter = btn.dataset.filter;
 
             document.querySelectorAll("#taskList li").forEach(li => {
-                if (filter === "all" || li.dataset.priority === filter) {
+                if (filter === "all" || li.dataset.priority == filter) {
                     li.style.display = "flex";
                 } else {
                     li.style.display = "none";
