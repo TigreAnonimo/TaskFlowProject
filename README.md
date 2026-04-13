@@ -153,3 +153,35 @@ Información del proyecto.
 
 ---
 
+# 🧩 Nueva versión: Migración a Backend + API REST
+
+La aplicación evolucionó de un sistema basado en **LocalStorage** a una arquitectura **Full Stack** con backend real.
+
+## 🚀 URLs en Producción
+
+### **Frontend**
+https://task-flow-project-chi.vercel.app/
+
+### **Backend**
+https://taskflow-backend-h758jxgl7-tigreanonimos-projects.vercel.app
+
+---
+
+# 🏗️ Arquitectura del Backend
+
+El backend está construido con **Node.js + Express** siguiendo una arquitectura por capas:
+
+```plaintext
+server/
+  api/
+    index.js
+  src/
+    config/
+      env.js
+    routes/
+      task.routes.js
+    controllers/
+      task.controller.js
+    services/
+      task.service.js
+  vercel.json
