@@ -180,14 +180,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // CREAR TAREA
     addBtn.addEventListener("click", async () => {
         const text = input.value.trim();
-        const priority = parseInt(prioritySelect.value);
+        const priority = prioritySelect.value; // ahora coincide con backend
 
         if (text === "") return;
 
         try {
             const nueva = await crearTarea({
-                titulo: text,
-                prioridad: priority
+                text: text,
+                priority: priority
             });
 
             nueva.createdAt = new Date().toLocaleDateString("es-ES");

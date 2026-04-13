@@ -1,32 +1,42 @@
-const API_URL = "https://taskflow-backend-3cqrw6yqd-tigreanonimos-projects.vercel.app/api/v1/tasks";
+const API_URL = "https://taskflow-backend-h758jxgl7-tigreanonimos-projects.vercel.app/api/v1/tasks";
 
 // Obtener todas las tareas
 export async function obtenerTareas() {
     const res = await fetch(API_URL);
-    return await res.json();
+    if (!res.ok) throw new Error("Error al obtener tareas");
+    return res.json();
 }
 
-// Crear una tarea
+// Crear tarea
 export async function crearTarea(tarea) {
     const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tarea)
     });
-    return await res.json();
+
+    if (!res.ok) throw new Error("Error al crear tarea");
+    return res.json();
 }
 
-// Actualizar una tarea
-export async function actualizarTarea(id, datos) {
+// Actualizar tarea
+export async function actualizarTarea(id, cambios) {
     const res = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos)
+        body: JSON.stringify(cambios)
     });
-    return await res.json();
+
+    if (!res.ok) throw new Error("Error al actualizar tarea");
+    return res.json();
 }
 
-// Eliminar una tarea
+// Eliminar tarea
 export async function eliminarTarea(id) {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    const res = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE"
+    });
+
+    if (!res.ok) throw new Error("Error al eliminar tarea");
+    return res.json();
 }
