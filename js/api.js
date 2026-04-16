@@ -37,6 +37,7 @@ export async function eliminarTarea(id) {
         method: "DELETE"
     });
 
+    if (res.status === 204) return true; // <-- FIX para eliminar
     if (!res.ok) throw new Error("Error al eliminar tarea");
     return res.json();
 }

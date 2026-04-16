@@ -15,7 +15,7 @@ export const taskService = {
 
     const nueva = {
       id: currentId++,
-      text: data.titulo,                     // <-- El backend guarda "text"
+      text: data.titulo,
       priority: prioridadTexto[data.prioridad] || "media",
       completed: false,
       createdAt: new Date().toLocaleDateString("es-ES")
@@ -29,11 +29,21 @@ export const taskService = {
     const tarea = tasks.find(t => t.id === id);
     if (!tarea) throw new Error("NOT_FOUND");
 
-    // Si llega "text", se actualiza
-    if (datos.text !== undefined) tarea.text = datos.text;
+    // Actualizar título
+    if (datos.titulo !== undefined) {
+      tarea.text = datos.titulo;
+    }
 
-    // Si llega "completed", se actualiza
-    if (datos.completed !== undefined) tarea.completed = datos.completed;
+    // Actualizar prioridad
+    if (datos.prioridad !== undefined) {
+      const prioridadTexto = { 1: "alta", 2: "media", 3: "baja" };
+      tarea.priority = prioridadTexto[datos.prioridad];
+    }
+
+    // Actualizar completado
+    if (datos.completed !== undefined) {
+      tarea.completed = datos.completed;
+    }
 
     return tarea;
   },

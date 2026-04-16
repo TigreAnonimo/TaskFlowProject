@@ -102,7 +102,7 @@ function renderTask(task) {
             task.text = nuevoTexto.trim();
 
             try {
-                await actualizarTarea(task.id, { text: task.text });
+                await actualizarTarea(task.id, { titulo: task.text });
                 textEl.textContent = task.text;
             } catch {
                 mostrarError("No se pudo actualizar la tarea.");
@@ -180,17 +180,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // CREAR TAREA
     addBtn.addEventListener("click", async () => {
         const text = input.value.trim();
-        const priority = prioritySelect.value; // ahora coincide con backend
+        const prioridad = parseInt(prioritySelect.value);
 
         if (text === "") return;
 
         try {
             const nueva = await crearTarea({
-                text: text,
-                priority: priority
+                titulo: text,
+                prioridad: prioridad
             });
-
-            nueva.createdAt = new Date().toLocaleDateString("es-ES");
 
             tasks.push(nueva);
             renderUI();
